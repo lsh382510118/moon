@@ -1,0 +1,12 @@
+#root {
+  .smallImg {
+    width: 69px;
+    height: 75px;
+    background: url('@/assets/img/1.png') no-repeat;
+  }
+  .bigImg {
+    width: 232px;
+    height: 154px;
+    background: url('@/assets/img/2.png') no-repeat;
+  }
+}
