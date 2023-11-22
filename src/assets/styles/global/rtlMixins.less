@@ -1,0 +1,701 @@
+/**
+* RTL 适配属性 mixins
+*/
+
+/**
+* 对类似padding，margin等的包含有4个方向的变量的值进行左右对换
+*/
+.rtl-left-right-switch(@v) {
+  @length: length(@v);
+  @result: if(
+    @length = 4,
+    extract(@v, 1) extract(@v, 4) extract(@v, 3) extract(@v, 2),
+    @v
+  );
+}
+
+/**
+* @p 属性名
+* @reset {'reset' | 'none'} 为reset时重置所传属性的值，为none时跳过
+*/
+.rtl-reset(@p, @reset) when (@reset = 'reset') {
+  @{p}: unset;
+}
+
+/**
+* direction
+*/
+.rtl-direction {
+  direction: rtl;
+}
+
+/**
+* padding
+* @val
+*
+* e.g .rtl-padding(10px 20px 5px 30px);
+* => padding: 10px 30px 5px 20px;
+*
+* 推荐左右padding存在且不相等的时候使用
+*/
+.rtl-padding (@val: 0) {
+  padding: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    padding: .rtl-left-right-switch(@val) [ @result];
+  }
+}
+
+/**
+* padding-left
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-padding-left(10px);
+* => padding-left: unset; padding-right: 10px;
+*
+* e.g .rtl-padding-left(10px, none);
+* => padding-right: 10px;
+*/
+.rtl-padding-left(@val: 0, @reset: 'reset') {
+  padding-left: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(padding-left, @reset);
+    padding-right: @val;
+  }
+}
+
+/**
+* padding-right
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-padding-right(10px);
+* => padding-right: unset; padding-left: 10px;
+*/
+.rtl-padding-right(@val: 0, @reset: 'reset') {
+  padding-right: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(padding-right, @reset);
+    padding-left: @val;
+  }
+}
+
+/**
+* margin
+* @val
+*
+* e.g .rtl-margin(10px 20px 5px 30px);
+* => margin: 10px 30px 5px 20px;
+*
+* 推荐左右margin存在且不相等的时候使用
+*/
+.rtl-margin (@val: 0) {
+  margin: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    margin: .rtl-left-right-switch(@val) [ @result];
+  }
+}
+
+/**
+* margin-left
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-margin-left(10px);
+* => margin-left: unset; margin-right: 10px;
+*/
+.rtl-margin-left(@val: 0, @reset: 'reset') {
+  margin-left: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(margin-left, @reset);
+    margin-right: @val;
+  }
+}
+
+/**
+* margin-right
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-margin-right(10px);
+* => margin-right: unset; margin-left: 10px;
+*/
+.rtl-margin-right(@val: 0, @reset: 'reset') {
+  margin-right: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(margin-right, @reset);
+    margin-left: @val;
+  }
+}
+
+/**
+* left
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-left(10px);
+* => left: unset; right: 10px;
+*/
+.rtl-left(@val: unset, @reset: 'reset') {
+  left: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(left, @reset);
+    right: @val;
+  }
+}
+
+/**
+* right
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-right(10px);
+* => right: unset; left: 10px;
+*/
+.rtl-right(@val: unset, @reset: 'reset') {
+  right: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(right, @reset);
+    left: @val;
+  }
+}
+
+/**
+* border-radius
+* @val
+*
+** e.g .rtl-border-radius(2px 4px);
+* => border-radius: 4px 2px;
+*
+* e.g .rtl-border-radius(2px 4px 8px);
+* => border-radius: 4px 2px 4px 8px;
+*
+* e.g .rtl-border-radius(2px 4px 8px 12px);
+* => border-radius: 4px 2px 12px 8px;
+*
+* 推荐左右border-radius存在且不相等的时候使用
+*/
+.rtl-border-radius(@val: 0) {
+  border-radius: @val;
+  @length: length(@val);
+
+  .length-1 when (@length = 1) {
+    border-radius: @val;
+  }
+
+  .length-2 when (@length = 2) {
+    border-radius: extract(@val, 2) extract(@val, 1);
+  }
+
+  .length-3 when (@length = 3) {
+    border-radius: extract(@val, 2) extract(@val, 1) extract(@val, 2)
+      extract(@val, 3);
+  }
+
+  .length-4 when (@length = 4) {
+    border-radius: extract(@val, 2) extract(@val, 1) extract(@val, 4)
+      extract(@val, 3);
+  }
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .length-1();
+    .length-3();
+    .length-2();
+    .length-4();
+  }
+}
+
+/**
+* border-top-left-radius
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-border-top-left-radius(10px);
+* => border-top-left-radius: unset; border-top-right-radius: 10px;
+*/
+.rtl-border-top-left-radius(@val: 0, @reset: 'reset') {
+  border-top-left-radius: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(border-top-left-radius, @reset);
+    border-top-right-radius: @val;
+  }
+}
+
+/**
+* border-top-right-radius
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-border-top-right-radius(10px);
+* => border-top-right-radius: unset; border-top-left-radius: 10px;
+*/
+.rtl-border-top-right-radius(@val: 0, @reset: 'reset') {
+  border-top-right-radius: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(border-top-right-radius, @reset);
+    border-top-left-radius: @val;
+  }
+}
+
+/**
+* border-bottom-left-radius
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-border-bottom-left-radius(10px);
+* => border-bottom-left-radius: unset; border-bottom-right-radius: 10px;
+*/
+.rtl-border-bottom-left-radius(@val: 0, @reset: 'reset') {
+  border-bottom-left-radius: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(border-bottom-left-radius, @reset);
+    border-bottom-right-radius: @val;
+  }
+}
+
+/**
+* border-bottom-right-radius
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-border-bottom-right-radius(10px);
+* => border-bottom-right-radius: unset; border-bottom-left-radius: 10px;
+*/
+.rtl-border-bottom-right-radius(@val: 0, @reset: 'reset') {
+  border-bottom-right-radius: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(border-bottom-right-radius, @reset);
+    border-bottom-left-radius: @val;
+  }
+}
+
+/**
+* border-left
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-border-left(1px solid red);
+* => border-left: unset; border-right: 1px solid red;
+*/
+.rtl-border-left(@val: unset, @reset: 'reset') {
+  border-left: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(border-left, @reset);
+    border-right: @val;
+  }
+}
+
+/**
+* border-right
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-border-right(1px solid red);
+* => border-right: unset; border-left: 1px solid red;
+*/
+.rtl-border-right(@val: unset, @reset: 'reset') {
+  border-right: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(border-right, @reset);
+    border-left: @val;
+  }
+}
+
+/**
+* border-width
+* @val
+*
+* e.g .rtl-border-width(10px 20px 5px 30px);
+* => border-width: 10px 30px 5px 20px;
+*/
+.rtl-border-width(@val: unset) {
+  border-width: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    border-width: .rtl-left-right-switch(@val) [ @result];
+  }
+}
+
+/**
+* border-left-width
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-border-left-width(10px);
+* => border-left-width: unset; border-right-width: 10px;
+*/
+.rtl-border-left-width(@val: unset, @reset: 'reset') {
+  border-left-width: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(border-left-width, @reset);
+    border-right-width: @val;
+  }
+}
+
+/**
+* border-right-width
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-border-right-width(10px);
+* => border-right-width: unset; border-left-width: 10px;
+*/
+.rtl-border-right-width(@val: unset, @reset: 'reset') {
+  border-right-width: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(border-right-width, @reset);
+    border-left-width: @val;
+  }
+}
+
+/**
+* border-style
+* @val
+*
+* e.g .rtl-border-style(solid dotted dashed double);
+* => border-style: solid double dashed dotted;
+*/
+.rtl-border-style(@val: unset) {
+  border-style: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    border-style: .rtl-left-right-switch(@val) [ @result];
+  }
+}
+
+/**
+* border-left-style
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-border-left-style(solid);
+* => border-left-style: unset; border-right-style: solid;
+*/
+.rtl-border-left-style(@val: unset, @reset: 'reset') {
+  border-left-style: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(border-left-style, @reset);
+    border-right-style: @val;
+  }
+}
+
+/**
+* border-right-style
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-border-right-style(solid);
+* => border-right-style: unset; border-left-style: solid;
+*/
+.rtl-border-right-style(@val: unset, @reset: 'reset') {
+  border-right-style: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(border-right-style, @reset);
+    border-left-style: @val;
+  }
+}
+
+/**
+* border-color
+* @val
+*
+* e.g .rtl-border-color(red green blue yellow);
+* => border-color: red yellow blue green;
+*/
+.rtl-border-color(@val: unset) {
+  border-color: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    border-color: .rtl-left-right-switch(@val) [ @result];
+  }
+}
+
+/**
+* border-left-color
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-border-left-color(red);
+* => border-left-color: unset; border-right-color: red;
+*/
+.rtl-border-left-color(@val: unset, @reset: 'reset') {
+  border-left-color: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(border-left-color, @reset);
+    border-right-color: @val;
+  }
+}
+
+/**
+* border-right-color
+* @val
+* @reset {'reset' | 'none'} 是否重置，默认是
+*
+* e.g .rtl-border-right-color(red);
+* => border-right-color: unset; border-left-color: red;
+*/
+.rtl-border-right-color(@val: unset,  @reset: 'reset') {
+  border-right-color: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    .rtl-reset(border-right-color, @reset);
+    border-left-color: @val;
+  }
+}
+
+/**
+* text-align
+*
+* e.g rtl-text-align(left);
+* => text-align: right;
+*
+* e.g rtl-text-align(center);
+* => text-align: center;
+*/
+.rtl-text-align(@val: left) {
+  text-align: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    text-align: if(@val = left, right, if(@val = right, left, @val));
+  }
+}
+
+/**
+* box-shadow
+*/
+.rtl-box-shadow(@val: none) {
+  box-shadow: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    // 取x轴的值
+    @x: extract(@val, 1);
+    // 取负号
+    @minus: replace('@{x}', '^(-).*', '$1');
+    // 取反
+    @xv: if(@minus = '-', e(replace('@{x}', '^-', '')), e('-@{x}'));
+    // 剩余的值
+    @restv: replace('@{val}', '^([^\s]+\s)', '');
+    box-shadow: e('@{xv} @{restv}');
+  }
+}
+
+/**
+* float
+*
+* e.g rtl-float(left);
+* => float: right;
+*/
+.rtl-float(@val: none) {
+  float: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    float: if(@val = left, right, if(@val = right, left, @val));
+  }
+}
+
+/**
+* clear
+*
+* e.g rtl-clear(left);
+* => clear: right;
+*/
+.rtl-clear(@val: none) {
+  clear: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    clear: if(@val = left, right, if(@val = right, left, @val));
+  }
+}
+
+/**
+* transition
+* 对transition里涉及到左右的属性进行对换
+* e.g .rtl-transition(padding-left 1s, padding-right 2s, margin-left 3s, border-right 3s, border-top-right-radius 4s);
+* => transition: padding-right 1s, padding-left 2s, margin-right 3s, border-left 3s, border-top-left-radius 4s;
+*/
+.rtl-transition(@rest...) {
+  each(@rest, {
+    transition+: @value;
+  });
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    each(@rest, {
+      // 获取transition property
+      @p: extract(@value, 1);
+      // 提取关键字left或right
+      @lr: replace('@{p}', '.*(left|right).*', '$1');
+      // 对换left和right
+      transition+: if(
+        @lr = 'right',
+        e(replace('@{value}', right, left)),
+        if(@lr = 'left', e(replace('@{value}', left, right)), @value)
+      );
+    });
+  }
+}
+
+/**
+* transition-property
+*/
+.rtl-transition-property(@rest...) {
+  each(@rest, {
+    transition-property+: @value;
+  });
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    each(@rest, {
+      // 提取关键字left或right
+      @lr: replace('@{value}', '.*(left|right).*', '$1');
+      // 对换left和right
+      transition-property+: if(
+        @lr = 'right',
+        e(replace('@{value}', right, left)),
+        if(@lr = 'left', e(replace('@{value}', left, right)), @value)
+      );
+    });
+  }
+}
+
+/**
+* transform
+* 针对 translate, translate3d, translateX, scale, scaleX, scale3d 等水平位置的值取反处理
+* e.g .rtl-transform(translateX(30px) rotate(30deg));
+* => transform: translateX(-30px) rotate(30deg);
+
+* e.g .rtl-transform(translateX(30px) scale(1, 1));
+* => transform: translateX(-30px) scale(-1, 1);
+*/
+.rtl-transform(@val: unset) {
+  transform: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    @fnNames: 'translate', 'translate3d', 'translateX', 'scale', 'scaleX',
+      'scale3d';
+
+    .translate-scale(@name: none, @v) {
+      // 取变换方法的参数
+      @param: replace('@{v}', '^@{name}\((.+)\)$', '$1');
+      // 取x轴的值
+      @x: replace(@param, '^([^\,]+),.*', '$1');
+      // 获取0的值
+      @zero: if(replace(@name, '^(scale).*$', '$1') = 'scale', '0', '0px');
+      // 取反
+      @xv: ~'calc(@{zero} - @{x})';
+      // 剩余的参数
+      @yzv: replace(@param, '^([^\,]+,)', '');
+      // @result: @param;
+      @result: if(
+        @name = 'translateX',
+        e('@{name}(@{xv})'),
+        if(@name = 'scaleX', e('@{name}(@{xv})'), e('@{name}(@{xv},@{yzv})'))
+      );
+    }
+
+    .transform(@counter, @currName, @v) {
+      @n: extract(@fnNames, @counter);
+      // 如果为translate则返回translate处理后的值，如果不是，则在循环结束时返回原值
+      @res: if(
+        @n = @currName,
+        .translate-scale(@currName, @v) [ @result],
+        if(@counter = 0, @v, .transform(@counter - 1, @currName, @v) [ @res])
+      );
+    }
+
+    each(@val, {
+      @name: replace('@{value}', '\(.+\)', '');
+      // 以空格隔开
+      transform+_: .transform(length(@fnNames), @name, @value) [ @res];
+    });
+  }
+}
+
+/**
+* background
+* 背景图的rtl适配没有实际需求，这里仅实现对左右的转换
+*/
+.rtl-background(@val: unset) {
+  background: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    // 提取关键字left或right
+    @lr: replace('@{val}', '.*(left|right).*', '$1');
+    // 对换left和right
+    background: if(
+      @lr = 'right',
+      e(replace('@{val}', right, left)),
+      if(@lr = 'left', e(replace('@{val}', left, right)), @val)
+    );
+  }
+}
+
+/**
+* background-position
+* 背景图位置属性，rtl适配没有实际需求，这里仅实现了左右对换
+* 若要实现百分比和像素值的rtl变换，需要明确元素宽度以及背景图宽度
+*/
+.rtl-background-position(@val: unset) {
+  background-position: @val;
+
+  [dir='rtl']&,
+  [dir='rtl'] & {
+    // 提取关键字left或right
+    @lr: replace('@{val}', '.*(left|right).*', '$1');
+    // 对换left和right
+    background-position: if(
+      @lr = 'right',
+      e(replace('@{val}', right, left)),
+      if(@lr = 'left', e(replace('@{val}', left, right)), @val)
+    );
+  }
+}

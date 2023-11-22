@@ -81,7 +81,11 @@ module.exports = {
                       ">0.25%",
                       "not dead"
                     ]
-                  })
+                  }),
+                  require('./px2rem.js')({
+                    rootValue: 100,
+                    minPixelValue: 1,
+                  }),
                 ]
               }
             }

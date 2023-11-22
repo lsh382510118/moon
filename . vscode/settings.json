@@ -1,0 +1,7 @@
+{
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+  "editor.formatOnSave": true,
+  "source.fixAll.eslint": true, 
+  "source.fixAll": true 
+}

@@ -6,8 +6,14 @@ import {
   Routes,
 } from 'react-router-dom';
 
+import '@/assets/styles/index.less';
+
+import Layout from '@/pages/Layout'
+
 const Home = lazy(() => import('@/pages/Home'));
 const Article = lazy(() => import('@/pages/Article'));
+const Html = lazy(() => import('@/pages/Html'));
+const Javascript = lazy(() => import('@/pages/Javascript'));
 
 
 const App = () => {
@@ -16,18 +22,19 @@ const App = () => {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/article" element={<Article />} />
+        <Route path="/html" element={<Html />} />
+        <Route path="/javascript" element={<Javascript />} />
       </Routes >
     </Suspense >
   );
 };
 
-// const root = document.getElementById('root');
-// const rootRender = ReactDOM.createRoot(root);
-// rootRender.render(<App />);
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <Layout>
+      <App />
+    </Layout>
   </BrowserRouter>,
   document.getElementById('root'),
 );
