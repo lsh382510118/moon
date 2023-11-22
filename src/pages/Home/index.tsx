@@ -1,12 +1,15 @@
 import React from 'react';
-import HomeHeader from './components/HomeHeader';
-import NavBar from '@/components/NavBar';
+import './index.less';
 
 const Home = () => {
   return (
-    <div>
-      <HomeHeader />
-      <NavBar />
+    <div className='main-content'>
+      <div className="canvas-point canvasCode" id="canvasPoint">
+        <iframe src="./html/canvasPoint.html" height="100%"></iframe>
+      </div>
+      <div className="canvas-point DivCode" id="divPoint">
+        <iframe src="./html/divPoint.html" height="100%"></iframe>
+      </div>
     </div>
   );
 };

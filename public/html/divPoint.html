@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<title>divPoint</title>
+<link href="./point.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="./../js/jquery.min.js"></script>
+<script src="./../js/monitor.js"></script>
+<script src="./../js/jqDnR.js"></script>
+
+<style type="text/css"> 
+body{
+	background-color: #333;
+}
+.title{
+
+}
+</style> 
+</head>
+<body>
+<div class="main">
+	<div class="title">divPoint</div>
+	<div class="monitor">	
+		<ul class="point-nav">
+			<li class="add-point"><button>
+				<div class="add-v"></div>
+				<div class="add-c"></div></button>
+			</li>
+			<li class="edit-point"><button>
+				<div class="edit-t"></div>
+				<div class="edit-b"></div></button>
+			</li>
+			<li class="del-point"><button>
+				<div class="del-v"></div>
+				<div class="del-c"></div></button>
+			</li>
+		</ul>
+		<div class="point-opre">
+			<div class="point-opre-wrap">
+				<div class="point-opre-mark"></div>
+				<div class="add-panel point-opre-panel on">
+					<div class="point-opre-header">
+						<div class="point-opre-title">请选择要添加的节点</div>
+						<div class="laybtn-box">
+							<button class="laybtn btn n-btn all btn-addpoint">确定</button>
+						</div>
+					</div>
+					<div class="addpoint-list-box">
+						<div class="addpoint-list clear">
+							<div class="newpoint-type">节点类型1</div>
+						</div>
+					</div>
+				</div>
+				<div class="point-opre-panel addrelation-panel">
+					<div class="point-opre-title">请选择ponit1所要联系的节点</div>
+					<div class="addpoint-list-box">
+						<div class="addpoint-list clear">
+						</div>
+					</div>
+					<!--<div class="laybtn-box">
+						<button class="laybtn btn n-btn all btn-addrelationpoint">确定</button>
+					</div>-->
+				</div>
+				<div class="edit-panel point-opre-panel">
+					<div class="point-opre-header">
+						<div class="point-opre-title">请选择要编辑的节点</div>				
+					<div class="laybtn-box">
+						<button class="laybtn btn n-btn all btn-editpoint">确定保存</button>
+					</div>
+					</div>
+					<div class="delpoint-list-box">
+						<table>
+							<tr>
+								<th><span class="red-star">*</span>Id:</th>
+								<td><input type="text" placeholder="请输入新增节点ID" class="editpid-input"></td>
+							</tr>
+							<tr>
+								<th><span class="red-star">*</span>名称:</th>
+								<td><input type="text" placeholder="请输入新增节点名称"  class="editpname-input"></td>
+							</tr>
+							<tr>
+								<th>state:</th>
+								<td><input type="text" placeholder="请输入新增节点状态" class="editpstate-input"></td>
+							</tr>
+							<tr>
+								<th>toPoint:</th>
+								<td><input type="text" placeholder="请输入新增节点指向节点"  class="newptoPoint-input"></td>
+							</tr>
+							<tr>
+								<th>top:</th>
+								<td><input type="text" placeholder="请输入新增节点top"  class="editptop-input"></td>
+							</tr>
+							<tr>
+								<th>left:</th>
+								<td><input type="text" placeholder="请输入新增节点left"  class="editpleft-input"></td>
+							</tr>
+						</table>
+					</div>		
+				</div>
+			</div>
+		</div>
+		<div class="pointDetail">
+			<h1 class="pointDetail-title">poin</h1>
+			<div class="pointDetail-main">
+				pointDetailpointDetailp，ointDetailpointDetail，pointDetail，ointDetailpoi，ntDetail
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var point = {"pointGroup":[
+		{"id":"point1","name":"name1","top":"40","left":"150","state":"0","toP":[
+			{"toPointId":"point2","toPointState":"1"},{"toPointId":"point3","toPointState":"0"}
+		]},
+		{"id":"point2","name":"name2","top":"180","left":"50","state":"1","toP":[
+			{"toPointId":"point3","toPointState":"1"}
+		]},
+		{"id":"point3","name":"name3","top":"190","left":"450","state":"1","toP":[
+			{"toPointId":"point4","toPointState":"1"}
+		]},
+		{"id":"point4","name":"name4","top":"420","left":"750","state":"1","toP":[
+			{"toPointId":"point1","toPointState":"1"}
+		]},
+		{"id":"point5","name":"name5","top":"236","left":"887","state":"1","toP":[
+			{"toPointId":"point6","toPointState":"1"}
+		]},
+		{"id":"point6","name":"name6","top":"106","left":"630","state":"0","toP":[
+			{"toPointId":"point1","toPointState":"0"}
+		]}
+	]
+	}
+//	console.info(point.pointGroup);
+	var pointRelation=point.pointRelation;//节点联系
+	addPoint(point);//创建节点
+	drawAllLine();//绘制初始点和线
+	$('.server').each(function(){
+		$(this).dragDiv(10,10);
+	})
+
+	//**********************浏览器限制访问本地文件，以下ajax，用于以后一些环境**********************
+//$.ajax({
+//	type:"POST",
+//	url:"date/test.json",
+//	dataType:"json",
+//	success: function(data){
+//		var pointGroup=data.pointGroup;//节点组
+//		console.info(pointGroup.length);
+//		var pointRelation=data.pointRelation;//节点联系
+//		addPoint(data);//创建节点
+//		drawAllLine();//绘制初始点和线
+//		$('.server').each(function(){
+//			$(this).dragDiv(10,10);
+//		})
+//	}
+//});
+
+	//**********************暂时木有用的  备份  增删改功能**********************
+//$.ajax({
+//	type:"POST",
+//	url:"date/date.json",
+//	dataType:"json",
+//	success: function(data){
+//		var pointGroup=data.pointGroup;//节点组
+//		var pointRelation=data.pointRelation;//节点联系
+//		addNewPoint(pointGroup);//创建新增节点列表
+//		addRelaPoint(pointGroup);//创建子节点列表
+//		$('.add-panel .newpoint').each(function(){
+//			$(this).bind('click',function(){
+//				newpoint($(this));
+//			});
+//		})
+//		$('.addrelation-panel .newpoint').click(function(){
+//			$(this).toggleClass('sel');
+//		});
+//	}
+//
+//});
+</script> 
+</body>
+</html>
