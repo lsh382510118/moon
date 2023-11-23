@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import './index.less';
 import { navData, navItemType } from './const';
 import { useNavigate } from 'react-router-dom';
@@ -9,11 +9,11 @@ import { useNavigate } from 'react-router-dom';
 const NavBar = () => {
   const targetRef = useRef(null);
   const navigate = useNavigate();
+  const targetElement = targetRef.current;
+  const [active, setActive] = useState(0);
 
-  const onLink = (item: navItemType) => {
-
-    const targetElement = targetRef.current;
-
+  const onLink = (item: navItemType, index: number) => {
+    setActive(index)
     if (targetElement) {
       window.scrollTo({
         top: (targetElement as HTMLElement)?.offsetTop,
@@ -28,9 +28,13 @@ const NavBar = () => {
 
   };
 
-  const NavDoms = navData.map((item: navItemType) => {
+  const NavDoms = navData.map((item: navItemType, index) => {
     return (
-      <div onClick={()=>{onLink(item)}} >{item.label}</div>
+      <div 
+        key={item?.key || index}
+        onClick={()=>{onLink(item, index)}}
+        className={active === index ? 'active' : ''}
+      >{item.label}</div>
     )
   });
 

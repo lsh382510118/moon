@@ -17,7 +17,7 @@ export const navData = [
   },
   {
     label: 'Plug-in Unit',
-    link: '/plugIn'
+    link: '/plugin'
   },
 ];
 
@@ -25,4 +25,5 @@ export interface navItemType {
   label: string,
   link: string,
   params?: string,
+  key?: any,
 }

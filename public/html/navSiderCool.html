@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>侧边栏</title>
+	<link rel="stylesheet" type="text/css" href="../../fonts/iconfont.css" media="screen">
+	<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+})
+</script>
+<style type="text/css">
+html,body{
+	height:100%;
+	width: 100%;
+}
+*{
+	margin: 0;
+	padding:0;
+}
+body{
+	background: #aa4630;
+	font-family: 'Oswald';
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.sidlenav-btn-wrap {
+	 position: absolute;
+	 left: 281px;
+	 bottom: 300px;
+	 -webkit-transition: cubic-bezier(1,-0.22,.16,1.27) all 1s;
+	 transition: cubic-bezier(1,-0.22,.16,1.27) all 1s;
+	 color: #fff;
+	 overflow: hidden;
+	 transform: scale(.7);
+ }
+.sidlenav-btn{
+	display: block;
+	position: relative;
+	height: 60px;
+	width: 60px;
+	padding-left: 0px;
+	border-radius: 0 50% 50% 0;
+	background-color:rgba(20,20,20,.5);
+	box-shadow: none;
+	border-width: 3px;
+	outline: 0;
+	cursor: pointer;
+	border: 0px solid rgba(255,255,255,.3);
+	-webkit-transition:cubic-bezier(1,-0.22,.16,1.27) all .7s;
+	transition:cubic-bezier(1,-0.22,.16,1.27) all .7s;
+}
+.sidlenav-btn-wrap.open{
+	left: 291px;
+	bottom: 300px;
+	border-color: #1076c4 #fff;
+	text-align: center;
+	transform: scale(.7);
+}
+.sidlenav-btn-wrap.open .sidlenav-btn{
+	background-color: rgba(20,20,20,.9);
+}
+.sidlenav-btn>div{
+	height: 4px;
+	width: 40px;
+	background-color: rgba(255,255,255,1);
+	margin: 6px auto;
+	position: absolute;
+	opacity: 1;
+	-webkit-transition:cubic-bezier(1,-0.22,.16,1.27) all .7s;
+	transition:cubic-bezier(1,-0.22,.16,1.27) all .7s;
+}
+.sidlenav-btn>.sidlenav-btn-d1{
+	top: 16px;
+	left: 28px;
+	width: 20px;
+	-webkit-transform:rotate(45deg);
+	transform:rotate(45deg);
+}
+.sidlenav-btn>.sidlenav-btn-d2{
+	top: 22px;
+	left: 14px;
+	width: 30px;
+	-webkit-transform:rotate(0deg);
+	transform:rotate(0deg);
+}
+.sidlenav-btn>.sidlenav-btn-d3{
+	top: 28px;
+	left: 28px;
+	width: 20px;
+	-webkit-transform:rotate(-45deg);
+	transform:rotate(-45deg);
+}
+.sidlenav-btn-wrap.open .sidlenav-btn>div{
+	right: 20px;
+	top: 500px;
+	display: inline-block;
+	border-color:#1076c4 #fff;
+}
+
+.sidlenav-btn-wrap.open  .sidlenav-btn>.sidlenav-btn-d1{
+	width: 20px;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	top: 27px;
+	left: 0px;
+}
+.sidlenav-btn-wrap.open  .sidlenav-btn>.sidlenav-btn-d2{
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	width: 20px;
+	top: 15px;
+	left: 0px;
+}
+.sidlenav-btn-wrap.open  .sidlenav-btn>.sidlenav-btn-d3{
+	width: 30px;
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
+	top: 22px;
+	left: 17px;
+}
+.sidlenav{
+	position: fixed;
+	left: -300px;
+	top: 0;
+	height: 100%;
+	width: 300px;
+	background-color:rgba(20,20,20,.9);
+	z-index: 10;
+	-webkit-transition:cubic-bezier(1,-0.22,.16,1.27) all .7s;
+	transition:cubic-bezier(1,-0.22,.16,1.27) all .7s;
+}
+.sidlenav.show{
+	left: 0;
+}
+.sidlenav-wrap{
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+.sidlenav {
+	position: fixed;
+	left: -300px;
+	top: 0;
+	height: 100%;
+	width: 300px;
+	background-color: rgba(20,20,20,.9);
+	z-index: 10;
+	-webkit-transition: cubic-bezier(1,-0.22,.16,1.27) all .7s;
+	transition: cubic-bezier(1,-0.22,.16,1.27) all .7s;
+}
+.sidlenav.show {
+	left: 0;
+}
+.sidlenav-wrap {
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+button:active{
+	outline: none;
+	outline-color:#fff;
+
+}
+.side-nav{
+	position:relative;
+	padding-top:44px;
+    overflow-x: hidden;}
+.side-nav>div.active{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	-webkit-transform:translateX(0);
+	transform:translateX(0);
+	-webkit-transition-delay:.2s;
+	transition-delay:.2s;
+}
+.side-nav>div.nm{
+	-webkit-transform:translateX(-100%);
+	transform:translateX(-100%);
+}
+.side-nav>div{
+	height: 44px;
+	line-height: 44px;
+    font-size: 0;
+    cursor: pointer;
+    -webkit-transition: ease all .4s;
+    transition: ease all .4s;
+	color:#555555;
+    white-space: nowrap;
+    overflow: hidden;
+	-webkit-transform:translateX(0);
+	transform:translateX(0);
+}
+.side-nav>div .ico,.side-nav>div p{
+	display: inline-block;
+	line-height: 44px;
+    vertical-align: middle;
+}
+.side-nav>div p{
+	font-size: 16px;
+	padding-left: 15px;
+	padding-right:300px;
+	background-color:rgba(255,255,255,.95);
+    -webkit-transition: ease all .3s,background 1s;
+    transition: ease all .3s,background 1s;
+	text-shadow:0px 1px 1px rgba(255,255,255,1);
+}
+.side-nav>div:hover p,.side-nav>div.active p{
+	background-color:rgba(255,255,255,0);
+	color:#fff;
+	text-shadow:0px 1px 1px rgba(100,100,100,.5);
+}
+.side-nav>div .ico{
+	width: 44px;
+	text-align: center;
+	font-size: 20px;
+	color:#fff;
+	text-shadow:0px 1px 1px rgba(100,100,100,.5);
+}
+.sub-nav{
+	position:absolute;
+	top:44px;
+	left:100%;
+	height:calc(100% - 44px);
+	background-color:#ebebeb;
+	font-size:0;
+    width: 100%;
+    -webkit-transition: ease all .4s;
+    transition: ease all .4s;
+	-webkit-transition-delay:0s;
+	transition-delay:0s;
+	opacity:0;
+}
+.sub-nav.open{
+	left:0;
+	opacity:1;
+	-webkit-transition-delay:1s;
+	transition-delay:1s;
+}
+.sub-nav>div{
+	display:inline-block;
+	height:100%;
+	vertical-align:middle}
+.sidenav-info-open{
+	position:relative;
+	width:22px;
+	background-color:#fff;
+	cursor:pointer;
+}
+.sidenav-info-open .ico{
+	position:absolute;
+	width:100%;
+	left:0;
+	top:50%;
+	text-align:center;
+	color:#666;
+	margin-top:-8px;
+	font-size:16px;
+}
+.sub-nav-main{
+	font-size:14px;
+	color:#555;
+	width:-webkit-calc(100% - (22px));
+	width:calc(100% - (22px));
+    padding: 1em;
+    overflow-x: hidden;
+    overflow-y: auto;
+	}
+</style>
+</head>
+<body>
+<div class="sidlenav show">
+	<div class="sidlenav-wrap">
+		<div class="side-nav">
+			<div class="active" style="background-color: #444">
+				<i class="ico shine"></i>
+				<p>JavaScript语句小结</p>
+			</div>
+			<div class=" " style="background-color: #B3C833">
+				<i class="ico jincheng"></i>
+				<p> JavaScript</p>
+			</div>
+			<div class=" " style="background-color: #CE5043">
+				<i class="ico jiantou1"></i>
+				<p> JavaScript</p>
+			</div>
+			<div class="" style="background-color:#FB8521">
+				<i class="ico nice"></i>
+				<p> JavaScript</p>
+			</div>
+			<div class="" style="background-color:#1AA1E1">
+				<i class="ico bear"></i>
+				<p> JavaScript</p>
+			</div>
+			<div class="" style="background-color:#658092">
+				<i class="ico skill"></i>
+				<p>JavaScript</p>
+			</div>
+			<label class="sub-nav ">
+				<div class="sidenav-info-open"><i class="ico arrowright"></i></div>
+				<div class="sub-nav-main">如果这是一种奇迹，那么就让奇迹延续</div>
+			</label>
+		</div>
+	</div>
+	<div class="sidlenav-btn-wrap open">
+		<button class="sidlenav-btn">
+			<div class="sidlenav-btn-d1"></div>
+			<div class="sidlenav-btn-d2"></div>
+			<div class="sidlenav-btn-d3"></div>
+		</button>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		//SidleNav----侧边栏显示及其交互效果
+		setTimeout(function(){
+			$('.sidlenav-btn-wrap').removeClass('open');
+			$('.sidlenav').removeClass('show');
+		},800);
+
+		$('.sidlenav-btn-wrap').click(function(){
+			$('.sidlenav-btn-wrap').toggleClass('open');
+			$('.sidlenav').toggleClass('show');
+		});
+		$('.side-nav>div').click(function(){
+			var acTop = $(this).position().top;
+			$('.side-nav>div').not(this).removeClass('active').addClass('nm');
+			$(this).css('top',acTop).addClass('active');
+			$(this).animate({
+				top:0},300);
+			$('.sub-nav').addClass('open');
+		});
+		$('.sidenav-info-open').click(function(){
+			$('.side-nav>div').removeClass('nm');
+			$('.sub-nav').removeClass('open');
+		});
+	});
+</script>
+</body>
+</html>

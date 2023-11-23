@@ -3,5 +3,11 @@
   "typescript.suggest.autoImports": true,
   "editor.formatOnSave": true,
   "source.fixAll.eslint": true, 
-  "source.fixAll": true 
+  "source.fixAll": true,
+  "typescript.validate.enable": true,
+  "typescript.format.enable": true,
+  "typescript.preferences.quoteStyle": "single",
+  "typescript.suggest.paths": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.referencesCodeLens.enabled": true
 }

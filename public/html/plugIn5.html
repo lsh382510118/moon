@@ -1,0 +1,48 @@
+<style>
+	textarea, iframe{
+		min-height: 150px;
+		width: 100%;
+		border: 1px solid #e3e3e3;
+	}
+</style>
+<div class="artical-layer-wrap">
+    <div class="layer-mark in"></div>
+    <div class="layer-main in">
+        <!--<div class="artical-layer-close-box">-->
+            <!--<span class="artical-layer-close">X</span>-->
+            <!--&lt;!&ndash;<span>点击返回！</span>&ndash;&gt;-->
+        <!--</div>-->
+        <div class="code-panel">
+<div class="htmlCodePanel">
+    <h5>HTML:</h5>
+<textarea>
+	<canvas id="canvas" height="150" width="130">你的浏览器不支持canvas！</canvas>
+	<span id="result">点击方块内外查看效果</span>
+</textarea>
+</div>
+<div class="cssCodePanel">
+<h5>css:</h5>
+<textarea>
+仅为了测试canvas的点击事件，so俺懒得去搞样式咯
+</textarea></div>
+<div class="jsCodePanel">
+    <h5>JS:</h5>
+<textarea>
+var canvas = document.getElementById("canvas"),
+		result = document.getElementById("result"),
+		ctx = canvas.getContext("2d");
+
+ctx.beginPath();
+ctx.rect(0,0,100,100);
+ctx.fill();
+
+canvas.addEventListener("click", function(ev){
+	result.innerHTML = ctx.isPointInPath(ev.layerX, ev.layerY) ? "点在方块上" : "点在方块外";
+});
+</textarea></div>
+</div>
+        <h5 class="clear">效果演示 <a href="#" id="btnEnlarge" class="btn-enlarge"><i class="ico magnify"></i></a></h5>
+        <iframe src="./canvasCheckInOrOut.html" id="PlugInhHtmlPage"></iframe>
+    </div>
+</div>
+

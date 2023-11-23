@@ -2,9 +2,9 @@
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": false,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -12,8 +12,8 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react", // react18这里也可以改成react-jsx
+    "noEmit": false,
+    "jsx": "react-jsx", // react18这里也可以改成react-jsx
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
@@ -22,5 +22,8 @@
       ]
     }
   },
-  "include": ["./src"]
+  "include": [
+    "./src",
+    "./externals.d.ts",
+  ]
 }
