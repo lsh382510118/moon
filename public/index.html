@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <!-- 绝对路径引入图标文件 -->
   <link data-n-head="ssr" rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link href="./fonts/iconfont.css" rel="stylesheet" type="text/css" />
+  <% if (process.env.NODE_ENV === 'production') { %>
+    <link href="./dist/fonts/iconfont.css" rel="stylesheet" type="text/css" />
+  <% } else { %>
+    <link href="./fonts/iconfont.css" rel="stylesheet" type="text/css" />
+  <% } %>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport"
     content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,viewport-fit=cover">

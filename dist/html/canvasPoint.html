@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<title>canvasPoint</title>
+<link href="./point.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="./../js/jquery.min.js"></script>
+<script src="./../js/qd.js"></script>
+<script src="./../js/jqDnR.js"></script>
+<style>
+	.n-index {
+		background-color: #041122;
+		height: 100%;
+		margin-bottom: -40px;
+		padding-bottom: 40px;
+		position: relative;
+	}
+.main{
+	padding-bottom: 0;
+	/*font-family: "微软雅黑";*/
+}
+#canvas1,#canvas2{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+}
+#canvas2{
+	z-index: 2;
+}
+.server{
+	/*opacity: .2;*/
+}
+#d2,#d1{
+	width:100px;
+	height: 100px;
+	background-color: #0000FF;
+	position: absolute;
+}
+.addpoint-list-box,.delpoint-list-box,.editpoint-list-box{
+    height: -webkit-calc(100% - 100px);
+    height: -moz-calc(100% - 100px);
+    height: calc(100% - 100px);
+    overflow-y: auto;
+    padding: 10px;
+}
+.point-opre-title{
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+    background-color: #777;
+    color: #fff;
+    font-size: 18px;	
+}
+.addpoint-list .newpoint{
+	position: static;
+	float: left;
+	margin: 8px;
+	cursor: pointer;
+	border: 0px solid #fff;
+}
+.addpoint-list .newpoint:hover,.newpoint.sel{
+	box-shadow: 0 0 10px 4px rgba(51, 153, 255,.9) inset;
+}
+.newpoint-type{
+	padding:10px;
+	border-bottom: 1px solid rgba(255,255,255,.7);
+	margin-bottom: 10px;
+	color: #fff;
+	font-weight: 500;
+	font-size: 16px;
+	text-align: left;
+}
+.laybtn-box{
+	display: -webkit-box;
+	display: box;
+}
+.laybtn.btn{
+	border-radius: 0;;
+	display: block;
+	-webkit-box-flex: 1;
+	box-flex:1;
+	height: 50px;
+	text-align: center;
+	background-color: #fd8108;
+}
+.laybtn.btn:hover{
+	background-color: #ff864c;
+}
+</style>
+</head>
+<body class="body-bg">
+<!--menu-->
+<div class="main">
+	<div class="n-index">
+		<div class="title">canvasPoint</div>
+		<canvas class="canvas-line" id="canvas1" width="1000" height="600"></canvas>
+		<canvas class="canvas-line" id="canvas2" width="1000" height="600"></canvas>
+		<ul class="point-nav">
+			<li class="add-point"><button>
+				<div class="add-v"></div>
+				<div class="add-c"></div></button>
+			</li>
+			<li class="del-point"><button>
+				<div class="del-v"></div>
+				<div class="del-c"></div></button>
+			</li>
+			<li class="edit-point"><button>
+				<div class="edit-t"></div>
+				<div class="edit-b"></div></button>
+			</li>
+		</ul>
+		<div class="point-opre">
+			<div class="point-opre-wrap">
+				<div class="add-panel point-opre-panel on">
+					<div class="point-opre-title">请选择要添加的节点</div>
+					<div class="addpoint-list-box">
+						<div class="addpoint-list clear">
+							<div class="newpoint-type">节点类型1</div>
+						</div>
+					</div>
+					<div class="laybtn-box">
+						<button class="laybtn btn n-btn all btn-addpoint">确定</button>
+					</div>
+				</div>
+				<div class="point-opre-panel addrelation-panel">
+					<div class="point-opre-title">请选择ponit1所要联系的节点</div>
+					<div class="addpoint-list-box">
+						<div class="addpoint-list clear">
+						</div>
+					</div>
+					<div class="laybtn-box">
+						<button class="laybtn btn n-btn all btn-addrelationpoint">确定</button>
+					</div></div>
+				<div class="del-panel point-opre-panel">
+					<div class="point-opre-title">请选择要删除的节点</div>
+					<div class="delpoint-list-box">
+						<div class="delpoint-list">
+							<label class="delpoint-li"><div>point1</div></label>
+							<label class="delpoint-li"><div>point1</div></label>
+							<label class="delpoint-li"><div>point1</div></label>
+							<label class="delpoint-li sel"><div>point1</div></label>
+							<label class="delpoint-li"><div>point1</div></label>
+						</div>
+					</div>					
+					<div class="laybtn-box">
+						<button class="laybtn btn n-btn all btn-delpoint">确定删除</button>
+					</div>
+				</div>
+				<div class="edit-panel point-opre-panel">
+					<div class="point-opre-title">请选择要删除的节点</div>
+					<div class="delpoint-list-box">
+						<table>
+							<tr>
+								<th><span class="red-star">*</span>Id:</th>
+								<td><input type="text" placeholder="请输入新增节点ID" class="editpid-input"></td>
+							</tr>
+							<tr>
+								<th><span class="red-star">*</span>名称:</th>
+								<td><input type="text" placeholder="请输入新增节点名称"  class="editpname-input"></td>
+							</tr>
+							<tr>
+								<th>state:</th>
+								<td><input type="text" placeholder="请输入新增节点状态" class="editpstate-input"></td>
+							</tr>
+							<tr>
+								<th>toPoint:</th>
+								<td><input type="text" placeholder="请输入新增节点指向节点"  class="newptoPoint-input"></td>
+							</tr>
+							<tr>
+								<th>top:</th>
+								<td><input type="text" placeholder="请输入新增节点top"  class="editptop-input"></td>
+							</tr>
+							<tr>
+								<th>left:</th>
+								<td><input type="text" placeholder="请输入新增节点left"  class="editpleft-input"></td>
+							</tr>
+						</table>
+					</div>				
+					<div class="laybtn-box">
+						<button class="laybtn btn n-btn all btn-editpoint">确定保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+<script>
+var ctx = document.getElementById('canvas1').getContext('2d');
+var ctx2 = document.getElementById('canvas2').getContext('2d');
+var points = {"pointGroup":[
+	{"id":"point1","name":"name1","top":"40","left":"150","state":"0","toP":[
+		{"toPointId":"point2","toPointState":"1"},{"toPointId":"point3","toPointState":"0"}
+	]},
+	{"id":"point2","name":"name2","top":"180","left":"50","state":"1","toP":[
+		{"toPointId":"point3","toPointState":"1"},{"toPointId":"point5","toPointState":"1"},{"toPointId":"point7","toPointState":"1"}
+	]},
+	{"id":"point3","name":"name3","top":"220","left":"450","state":"1","toP":[
+		{"toPointId":"point6","toPointState":"1"},{"toPointId":"point7","toPointState":"1"}
+	]},
+	{"id":"point4","name":"name4","top":"465","left":"741","state":"1","toP":[
+		{"toPointId":"point1","toPointState":"1"},{"toPointId":"point7","toPointState":"1"}
+	]},
+	{"id":"point5","name":"name5","top":"236","left":"887","state":"1","toP":[
+		{"toPointId":"point6","toPointState":"1"}
+	]},
+	{"id":"point6","name":"name6","top":"106","left":"630","state":"0","toP":[
+		{"toPointId":"point1","toPointState":"0"}
+	]},
+	{"id":"point7","name":"name7","top":"66","left":"530","state":"1","toP":[
+		{"toPointId":"point6","toPointState":"0"}
+	]}
+
+]
+}  
+var pointGroup=points.pointGroup;//节点组
+var pointRelation=points.pointRelation;//节点联系
+addPoint(points);//创建节点
+drawAllLine(pointRelation,ctx);//绘制直线
+drawActive(pointRelation,ctx2);//绘制动态点
+$('.server').each(function(){
+	$(this).dragDiv(10,10);
+})
+//**********************浏览器限制访问本地文件，以下ajax，用于以后一些环境**********************
+//$.ajax({
+//	type:"POST",
+//	url:"date/date.json",
+//	dataType:"json",
+//	success: function(data){
+//		var pointGroup=data.pointGroup;//节点组
+//		var pointRelation=data.pointRelation;//节点联系
+//		addPoint(data);//创建节点
+//		drawAllLine(pointRelation,ctx);//绘制直线
+//		drawActive(pointRelation,ctx2);//绘制动态点
+//		$('.server').each(function(){
+//			$(this).dragDiv(10,10);
+//		})
+//	}
+//
+//});
+$.ajax({
+	type:"POST",
+	url:"date/date.json",
+	dataType:"json",
+	success: function(data){
+		var pointGroup=data.pointGroup;//节点组
+		var pointRelation=data.pointRelation;//节点联系
+		addNewPoint(pointGroup);//创建新增节点列表
+		addRelaPoint(pointGroup);//创建子节点列表
+		$('.add-panel .newpoint').each(function(){
+			$(this).bind('click',function(){
+				newpoint($(this));
+			});
+		})
+		$('.addrelation-panel .newpoint').click(function(){
+			$(this).toggleClass('sel');
+		});
+	}
+	
+});	
+
+//添加节点的联系
+$('.btn-addrelationpoint').click(function(){
+	$('.addrelation-panel').removeClass('on');
+	var relation = new Array();
+	relation = $('.addrelation-panel .newpoint.sel');
+	var topint='';
+	
+	for(var i=0;i<relation.length;i++){
+		topint=topint+$(relation[i]).attr('tempid')+';';
+	}
+	var html = '<input type="hidden" value="'+topint+'" class="temp-pointrelation"/>'
+	$('body').append(html);
+});
+
+//添加节点
+$(".btn-addpoint").click(function(){
+	var newpoint=$('.addpoint-list-box .newpoint.sel');
+	var name=$('.add-panel .newpoint.sel').children('p').html();
+	var id = name;
+	var state='';
+	var toPoint = $('.temp-pointrelation').val();
+	console.info(toPoint);
+	var top = 10;
+	var left = 10;
+	if(state==''){
+		state=1;
+	}
+	if(toPoint==''||toPoint == undefined){
+		toPoint='';
+	}
+	if(top==''){
+		top=10;
+	}
+	if(left==''){
+		state=10;
+	}
+	if(id==''||id == undefined){
+		if(name == ''){
+			alert("请输入新增节点的id和名称")
+		}else{
+			alert("请输入新增节点的id")
+		}
+	}else{
+		addP(id,name,state,top,left,toPoint);
+		$("#"+id).dragDiv(10,10);
+	}
+	$('.point-opre-panel').removeClass('on').removeClass('hid');
+	$('.point-opre').removeClass('show');
+//	console.info("id:"+id+" name:"+name+"   state:"+state+"  toPoint:"+toPoint+"  top:"+top+"  left:"+left);
+	
+});
+$(".btn-delpoint").click(function(){
+	
+});
+</script>
+</body>
+</html>

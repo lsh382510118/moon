@@ -1,0 +1,1 @@
+module.exports={dev:{template:{title:"你好",header:!1,footer:!1}},build:{template:{title:"你好才怪",header:!0,footer:!1}}};
