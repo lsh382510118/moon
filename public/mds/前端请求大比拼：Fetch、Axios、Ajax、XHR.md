@@ -36,22 +36,22 @@ Summer
 使用 XMLHttpRequest 发送请求的步骤如下：
 
 1. 创建**XMLHttpRequest**对象：
-```
+```javascript
 let xhr = new XMLHttpRequest();
 ```
 
 1. 设置请求参数：
-```
+```javascript
 xhr.open('GET', 'https://example.com/api/data', true);
 ```
 
 1. 设置请求头（可选）：
-```
+```javascript
 xhr.setRequestHeader('Content-Type', 'application/json');
 ```
 
 1. 监听状态变化：
-```
+```javascript
 xhr.onreadystatechange = () => {
   if (xhr.readyState === 4) {
     if (xhr.status === 200) {
@@ -66,11 +66,11 @@ xhr.onreadystatechange = () => {
 ```
 
 1. 发送请求：
-```
+```javascript
 xhr.send();
 ```
 完整代码如下：
-```
+```javascript
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://api.example.com/data', true);
 
@@ -97,31 +97,31 @@ Summer
 XMLHttpRequest 的 **open()** 方法用于初始化一个请求。**open()** 方法接受三个必填参数和一个可选参数，它们是：
 
 1. **method**: 表示请求的 HTTP 方法，例如 GET、POST、PUT 等。
-```
+```javascript
 xhr.open("GET", "https://example.com/api/data", true);
 ```
 
 1. **url**: 表示请求的 URL 地址。
-```
+```javascript
 xhr.open("GET", "https://example.com/api/data", true);
 ```
 
 1. **async**: 表示请求是否异步执行，即是否使用异步模式。默认为 **true**，表示异步执行；f**alse** 表示同步执行。
-```
+```javascript
 javascriptCopy Codexhr.open("GET", "https://example.com/api/data", true);
 ```
 
 1. **username** (可选): 表示用于进行 HTTP 认证的用户名。
-```
+```javascript
 xhr.open("GET", "https://example.com/api/data", true, "username");
 ```
 
 1. **password** (可选): 表示用于进行 HTTP 认证的密码。
-```
+```javascript
 xhr.open("GET", "https://example.com/api/data", true, "username", "password");
 ```
 综合起来，**open()** 方法的完整语法如下：
-```
+```javascript
 xhr.open(method, url, async, username, password);
 ```
 Summer
@@ -130,7 +130,7 @@ Summer
 **请求头和响应头**
 ![](https://cdn.nlark.com/yuque/0/2023/png/991609/1699606796106-4641a04c-f7ef-4c6a-88ca-245e52f7b124.png#averageHue=%233e3e3e&clientId=uc206be34-3cd5-4&from=paste&id=u1112bc42&originHeight=16&originWidth=16&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uc3dda480-6dc6-4542-b840-f4b3dec392a&title=)
 可以使用 **setRequestHeader()** 方法设置 XMLHttpRequest 的请求头。这个方法接受两个参数：头字段的名称和值。
-```
+```javascript
 xhr.setRequestHeader("Content-Type", "application/json");
 xhr.setRequestHeader("Authorization", "Bearer token123");
 ```
@@ -138,22 +138,22 @@ xhr.setRequestHeader("Authorization", "Bearer token123");
 可以使用 **getResponseHeader()** 方法或者 **getAllResponseHeaders()** 方法来获取 XMLHttpRequest 的响应头。
 
 - **getResponseHeader()**：通过指定头字段的名称，可以获取指定的响应头字段的值。
-```
+```javascript
 const contentType = xhr.getResponseHeader("Content-Type");
 ```
 这里使用 **getResponseHeader()** 方法获取了名为 **Content-Type**的响应头字段的值。
 
 - **getAllResponseHeaders()**** **：该方法返回一个包含所有响应头信息的字符串。
-```
+```javascript
 const headers = xhr.getAllResponseHeaders();
 ```
 这里使用 **getAllResponseHeaders()** 方法获取了所有响应头信息，并将其存储在名为 **headers** 的变量中。
 这里返回的 **headers** 是一个包含所有响应头信息的字符串。该字符串中每一行表示一个响应头字段，具有以下形式：
-```
+```javascript
 HeaderName: HeaderValue
 ```
 例如，如果响应头中包含 **Content-Type** 和 **Authorization** 字段，那么返回的 **headers** 字符串可能如下所示：
-```
+```javascript
 Content-Type: application/json
 Authorization: Bearer token123
 ```
@@ -199,7 +199,7 @@ Summer
 XMLHttpRequest (XHR) 对象具有以下常用的事件属性：
 
 1. **onreadystatechange**: 当 **readyState** 属性发生变化时触发该事件。可以使用 **xhr.onreadystatechange** 属性来指定处理状态变化的回调函数。在每次状态变化时都会触发该事件，可以通过检查 **xhr.readyState** 属性来确定当前的状态。
-```
+```javascript
 xhr.onreadystatechange = () => {
   if(xhr.readyState === 4) {
     // 请求已完成
@@ -215,7 +215,7 @@ xhr.onreadystatechange = () => {
 ```
 
 1. **onload:** 当请求成功完成并且响应数据完全加载时触发该事件。可以使用 **xhr.onload** 属性来指定处理成功加载的回调函数。通常在这个事件中获取和处理响应数据。
-```
+```javascript
 xhr.onload = () => {
   // 获取和处理响应数据
   const responseData = JSON.parse(xhr.responseText);
@@ -224,21 +224,21 @@ xhr.onload = () => {
 ```
 
 1. **onerror**: 当请求发生错误时触发该事件。可以使用 **xhr.onerror** 属性来指定处理错误的回调函数。常见的错误包括网络错误、无法完成请求等。
-```
+```javascript
 xhr.onerror = () => {
   // 处理错误逻辑
 };
 ```
 
 1. **onprogress**: 在数据传输过程中持续触发，用于追踪请求的进度。可以使用 **xhr.onprogress** 属性来指定处理进度的回调函数。
-```
+```javascript
 xhr.onprogress = (event) => {
   // 处理进度逻辑
 };
 ```
 
 1. **ontimeout**： 当请求超时时触发该事件。可以使用 **xhr.ontimeout** 属性来指定处理超时的回调函数。
-```
+```javascript
 xhr.ontimeout = () => {
   // 处理超时逻辑
 };
@@ -251,32 +251,32 @@ Summer
 responseType 是 XMLHttpRequest 对象的属性，用于指定响应的数据类型。它决定了如何解析从服务器返回的响应数据。 常见的 responseType 值包括：
 
 1. **"" (默认值)**: 表示响应的数据类型是字符串。
-```
+```javascript
 xhr.responseType = "";
 ```
 
 1. **"text"**: 表示响应的数据类型是字符串。
-```
+```javascript
 xhr.responseType = "text";
 ```
 
 1. **"json"**: 表示响应的数据类型是 JSON 对象，会自动将响应数据解析为 JavaScript 对象。
-```
+```javascript
 xhr.responseType = "json";
 ```
 
 1. **"document"**: 表示响应的数据类型是 XML 文档对象，会自动将响应数据解析为 XML 文档对象。
-```
+```javascript
 xhr.responseType = "document";
 ```
 
 1. **"arraybuffer"**: 表示响应的数据类型是 **ArrayBuffer** 对象，适用于二进制数据的传输和处理。
-```
+```javascript
 xhr.responseType = "arraybuffer";
 ```
 
 1. **"blob"**: 表示响应的数据类型是 Blob 对象，适用于文件下载等场景。
-```
+```javascript
 xhr.responseType = "blob";
 ```
 通过设置不同的 **responseType** 值，可以根据需要获取不同类型的响应数据。注意，在设置 **responseType** 之前，最好在调用 **open** 方法之后、发送请求之前设置，以确保设置生效。
@@ -288,7 +288,7 @@ AJAX（Asynchronous JavaScript and XML，异步 JavaScript 和 XML）是一种�
 当使用结合了这些技术的 Ajax 模型以后，网页应用能够快速地将增量更新呈现在用户界面上，而不需要重载（刷新）整个页面。这使得程序能够更快地回应用户的操作。Ajax 最吸引人的特性是它的“异步”性质，这意味着它可以与服务器通信、交换数据并更新页面，而无需刷新页面。
 Ajax 是一种使用浏览器提供的 XMLHttpRequest 对象实现的技术，用于在不刷新整个页面的情况下进行异步请求和更新页面内容。**可以说 Ajax 是基于浏览器提供的 XMLHttpRequest 对象来实现的。**
 以下是基于原生 JavaScript 的 AJAX 请求代码示例：
-```
+```javascript
 // 创建 XMLHttpRequest 对象
 const xhr = new XMLHttpRequest();
 
@@ -338,7 +338,7 @@ Summer
 ![](https://cdn.nlark.com/yuque/0/2023/png/991609/1699606797707-69dda537-6858-4535-89d7-da0059693a0f.png#averageHue=%233e3e3e&clientId=uc206be34-3cd5-4&from=paste&id=uf7e64dfd&originHeight=16&originWidth=16&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=ue07681cb-b11a-4f4d-8514-a1cca88378e&title=)
 Fetch API 提供了一个全局的 **fetch()** 方法，该方法提供了一种简单、逻辑的方式来通过网络异步获取资源。
 **fetch() **方法的语法如下：
-```
+```javascript
 fetch(url, options)
   .then(response => {
     // 在这里处理响应
@@ -359,7 +359,7 @@ fetch(url, options)
 - 在 **.catch()** 中，我们可以访问到 **error** 对象，用于处理请求过程中的任何错误。
 
 **options** 对象包含的属性如下：
-```
+```javascript
 {
   method: 'POST', // *GET, POST, PUT, DELETE等
   mode: 'cors', // no-cors, *cors, same-origin
@@ -402,7 +402,7 @@ Summer
 - **response.url**：响应的 URL。
 
 我们可以使用 **response.type** 来确定响应的类型，并根据不同的类型采取相应的处理方法：
-```
+```javascript
 fetch(url)
   .then(response => {
     // 检查响应状态码
@@ -456,7 +456,7 @@ fetch 函数的请求头包含在发起 HTTP 请求时发送给服务器的信�
 - **User-Agent**：标识发起请求的用户代理（浏览器或应用程序）的信息。
 
 在 fetch 函数中可以通过第二个参数进行配置，其中可以指定请求头：
-```
+```javascript
 fetch(url, {
   method: 'GET',
   headers: {
@@ -479,7 +479,7 @@ fetch(url, {
 - **Content-Disposition**：指定响应的内容该如何展示（如文件的下载）。
 
 在处理 **fetch** 返回的 **Response** 对象时，可以通过调用 **response.headers.get('Header-Name')** 方法来获取特定的响应头字段的值。
-```
+```javascript
 fetch(url)
   .then(response => {
     const contentType = response.headers.get('Content-Type');
@@ -495,7 +495,7 @@ Summer
 **错误处理**
 ![](https://cdn.nlark.com/yuque/0/2023/png/991609/1699606798419-fc408eed-a947-47e4-8681-30cf711346e5.png#averageHue=%233e3e3e&clientId=uc206be34-3cd5-4&from=paste&id=u9c0d5884&originHeight=16&originWidth=16&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u1bfeedda-1563-4583-8fce-8cc9e5393b7&title=)
 除了可以使用 catch() 来处理错误之外，与使用其他异步操作一样，我们也可以使用 **async/await **来处理异步请求，使代码更加简洁和易读：
-```
+```javascript
 async function fetchData() {
   try {
     const response = await fetch('https://api.example.com/data');
@@ -519,7 +519,7 @@ Summer
 ![](https://cdn.nlark.com/yuque/0/2023/png/991609/1699606798746-8aa0fdbc-2d9d-41ff-9afa-362925d981f4.png#averageHue=%233e3e3e&clientId=uc206be34-3cd5-4&from=paste&id=u2fa8290d&originHeight=16&originWidth=16&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uce27e9a7-d572-49a0-bc86-7297f085dbb&title=)
 在标准的 Fetch API 中，没有提供直接取消 Fetch 请求的内置方法。但是，可以使用以下方法来模拟或实现取消 Fetch 请求的效果。
 使用 **AbortController** 和 **AbortSignal**：这是一种较新的浏览器特性，用于生成可以取消请求的信号。可以创建一个 **AbortController**对象，然后将其关联到 Fetch 请求中，当需要取消请求时，调用 **AbortController** 的 **abort()**方法：
-```
+```javascript
 // 创建 AbortController 和关联的 signal
 const abortController = new AbortController();
 const signal = abortController.signal;
@@ -566,14 +566,14 @@ Axios 库具有以下特点：
 - **简洁的 API**：Axios 的 API 设计简洁易用，具有直观的方法命名和参数配置。可以轻松地使用 Axios 进行 GET、POST、PUT、DELETE 等常见的 HTTP 请求。
 
 可以通过以下命令来安装 Axios：
-```
+```javascript
 // 使用 npm 安装
 npm install axios
 // 使用 yarn 安装
 yarn add axios
 ```
 下面来进行一个简单的 get 请求：
-```
+```javascript
 axios.get('https://api.example.com/data')
   .then(response => {
     // 处理成功响应
@@ -602,7 +602,7 @@ axios 支持通过简写方式来执行不同类型的请求：
 - axios.patch(url[, data[, config]])
 
 对于这些方法，第一个参数是请求的 URL，config 和 data 分别是请求的配置项和请求参数，这两个参数都是可选的。例如，下面是一个 post 请求：
-```
+```javascript
 const options = {
   headers: {'X-Custom-Header': 'value'}
 };
@@ -624,7 +624,7 @@ Summer
 **多个请求**
 ![](https://cdn.nlark.com/yuque/0/2023/png/991609/1699606799896-c4a79ecd-d750-4f33-bd9e-98426d57b3e1.png#averageHue=%233e3e3e&clientId=uc206be34-3cd5-4&from=paste&id=uf6b4c5e5&originHeight=16&originWidth=16&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u3d76c20d-3f6c-4ec3-ab25-03be5b30d40&title=)
 在 Axios 中，可以使用 **axios.all** 和 **axios.spread** 来处理多个并发的请求：
-```
+```javascript
 const axios = require('axios');
 
 // 创建多个请求
@@ -651,7 +651,7 @@ Summer
 ![](https://cdn.nlark.com/yuque/0/2023/png/991609/1699606800205-a1dc563d-c0e8-4685-b84e-a38427d613a4.png#averageHue=%233e3e3e&clientId=uc206be34-3cd5-4&from=paste&id=u94bbfd71&originHeight=16&originWidth=16&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u7ff81933-a134-4018-8f20-e087dbd11b9&title=)
 在 Axios 中，可以使用 **transformRequest** 方法在请求发送之前对请求数据进行转换和处理，它是一个请求拦截器，是一个可选的函数。
 tran**sformRequest** 函数接收两个参数：**requestData** 和 **requestHeaders**。其中，**requestData** 是要发送的请求数据，**requestHeaders** 是要发送的请求头信息。可以在 **transformRequest** 函数内部对这些参数进行修改，并将修改后的值返回。返回的结果将作为实际发送请求的数据。
-```
+```javascript
 axios({
   url: 'https://api.example.com/data',
   method: 'post',
@@ -683,7 +683,7 @@ axios({
 ```
 这里使用 Axios 发起了一个 POST 请求。通过传递包含 **transformRequest** 函数的配置对象来定义请求。在 **transformRequest** 函数内部，复制了原始的请求数据 **data**，并进行了一些修改和处理，如添加了额外的字段和修改了请求头信息。最终，将修改后的数据以 JSON 字符串的形式返回。Axios 将使用 **transformRequest** 函数返回的结果作为实际发送请求的数据。
 除了可以对请求进行拦截之外，Axios 还支持对响应进行拦截，对响应数据进行转换和处理。可以通过 **transformResponse** 响应拦截器来实现。该函数接收一个参数：**responseData**，它是从服务器接收到的原始响应数据。可以在 **transformResponse** 函数内部对这个参数进行修改，并将修改后的值返回。返回的结果将作为实际处理响应的数据。
-```
+```javascript
 axios.get('https://api.example.com/data', {
   transformResponse: (data) => {
     // 对响应数据进行转换和处理
@@ -711,7 +711,7 @@ Summer
 **拦截请求和响应**
 ![](https://cdn.nlark.com/yuque/0/2023/png/991609/1699606800403-d3525285-1fbc-44fe-b55e-d965994d1de5.png#averageHue=%233e3e3e&clientId=uc206be34-3cd5-4&from=paste&id=u90e6ff57&originHeight=16&originWidth=16&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u647b3ce6-0e1e-45e9-9a45-ab0b225759a&title=)
 Axios 中，可以使用拦截器来拦截请求和响应，并在其被发送或接收之前进行一些额外的处理，可以通过 **axios.interceptors** 对象来添加拦截器。
-```
+```javascript
 // 添加请求拦截器
 axios.interceptors.request.use(config => {
   // 在发送请求之前做一些处理
@@ -760,7 +760,7 @@ Summer
 ![](https://cdn.nlark.com/yuque/0/2023/png/991609/1699606800794-ff83a992-c320-40f1-afde-e295ca95ef44.png#averageHue=%233e3e3e&clientId=uc206be34-3cd5-4&from=paste&id=u0fca7b3a&originHeight=16&originWidth=16&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=uac459d71-4a63-4358-ae2d-7067a15eefc&title=)
 跨站请求伪造（简称 XSRF）是一种攻击 Web 应用的方法，其中攻击者将自己伪装成合法且受信任的用户，以影响应用程序与用户浏览器之间的交互。 有很多方法可以执行此类攻击，包括 **XMLHttpRequest**。
 幸运的是，Axios 通过允许在发出请求时嵌入额外的身份验证数据来防止 XSRF。 这使得服务器能够发现来自未经授权的位置的请求。以下是使用 Axios 完成此操作的方法：
-```
+```javascript
 const options = {
   method: 'post',
   url: '/login',
@@ -790,7 +790,7 @@ Summer
 ![](https://cdn.nlark.com/yuque/0/2023/png/991609/1699606801135-25084393-f88e-4df0-8067-2fc7f692f41a.png#averageHue=%233e3e3e&clientId=uc206be34-3cd5-4&from=paste&id=u89bb468b&originHeight=16&originWidth=16&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=ua9f14b22-4e54-48dc-a41a-a9ff4636f48&title=)
 Axios 的另一个有趣的功能是能够监控请求的进度，这在下载或上传大文件时特别有用，可以使用 **onUploadProgress** 和 **onDownloadProgress** 两个配置选项来实现。
 对于上传进度，可以使用 **onUploadProgress** 配置选项。它会在上传数据时触发，并提供关于上传进度的信息。
-```
+```javascript
 axios.post('/upload', data, {
   onUploadProgress: progressEvent => {
     const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -806,7 +806,7 @@ axios.post('/upload', data, {
 ```
 这里发送了一个 POST 请求，在配置选项中使用了 **onUploadProgress**。当数据上传过程中触发进度事件时，回调函数会被执行。在回调函数中，我们计算出了已上传数据的百分比，并将其打印出来。
 对于下载进度，可以使用 **onDownloadProgress** 配置选项。它会在接收到响应数据时触发，并提供关于下载进度的信息。
-```
+```javascript
 axios.get('/download', {
   onDownloadProgress: progressEvent => {
     const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -827,7 +827,7 @@ Summer
 **取消请求**
 ![](https://cdn.nlark.com/yuque/0/2023/png/991609/1699606801263-68c27ec8-118e-49fb-a374-3c7cd7e10dd0.png#averageHue=%233e3e3e&clientId=uc206be34-3cd5-4&from=paste&id=uea448ea0&originHeight=16&originWidth=16&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u98ef587a-c473-4e2b-984f-858b60d438c&title=)
 在 Axios 中，可以使用取消令牌（cancel token）来取消请求。取消令牌是一个对象，它表示一个具体的取消操作，并允许在需要时中止请求。
-```
+```javascript
 // 创建一个取消令牌源
 const CancelToken = axios.CancelToken;
 const source = CancelToken.source();
@@ -858,7 +858,7 @@ Summer
 **请求超时**
 ![](https://cdn.nlark.com/yuque/0/2023/png/991609/1699606801778-0fccb481-cf8b-4709-bd57-b670ae1b484d.png#averageHue=%233e3e3e&clientId=uc206be34-3cd5-4&from=paste&id=uc0365898&originHeight=16&originWidth=16&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u75caafff-6d37-4f1b-a75b-eb5aecdcd2b&title=)
 可以使用 **timeout** 配置选项设置 Axios 请求的超时时间，这个选项指定了请求在多少毫秒后如果没有得到响应就会超时。
-```
+```javascript
 axios.get('/api/data', {
   timeout: 5000 // 设置超时时间为5秒
 })

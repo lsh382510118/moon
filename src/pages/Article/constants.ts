@@ -1,5 +1,9 @@
-// import skillsArticle from './articles/RDSkills';
+import { skillsArticles } from './articles/RDSkills';
 
+
+export const allArticle = {
+  ...skillsArticles,
+}
 
 
 export const articleDataMap = [

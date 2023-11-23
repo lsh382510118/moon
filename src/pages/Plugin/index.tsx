@@ -10,6 +10,9 @@ const Plugin = () => {
   
   const onClick = (item: pluginItemType) => {
     const { name, link } = item;
+    if(!link) {
+
+    }
     setIsModalOpen(true);
     setTitle(name);
     setPluginLink(link);

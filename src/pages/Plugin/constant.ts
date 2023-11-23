@@ -6,6 +6,7 @@ export interface pluginItemType {
   icon: string,
   background: string,
 }
+
 export const pluginList = [
   {
     name: '鼠标滑过->收缩菜单[纯css]',
