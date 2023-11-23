@@ -1,5 +1,6 @@
-const htmlBasePath = './html';
 
+import {path} from '@/constants/index';
+const htmlBasePath = `${path}html`;
 export interface pluginItemType {
   name: string,
   link: string,
