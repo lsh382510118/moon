@@ -7,7 +7,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const PurgeCSSPlugin = require('purgecss-webpack-plugin');
 const CompressionPlugin  = require('compression-webpack-plugin');
-
+const globAll = require('glob-all');
 
 module.exports = merge(baseConfig, {
   mode: 'production',
