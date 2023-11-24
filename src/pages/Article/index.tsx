@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Collapse, Modal } from 'antd';
-import { articleDataMap, allArticle } from './constants';
+import { articleDataMap } from './constants';
 import MarkdownView from '@/components/MarkdownView';
 import styles from './index.module.less';
+import { MDPath } from '@/constants/config';
 
-type articleType = keyof typeof allArticle;
 
 interface articleItemtype {
   title: string;
-  id: articleType;
+  basePath: string;
 }
 const Article: React.FC = () => {
 
@@ -17,10 +17,10 @@ const Article: React.FC = () => {
   const [filePath, setFilePath] = useState('');
 
   const articleItemClick = (item: articleItemtype) => {
-    const { id , title } = item;
+    const { basePath, title } = item;
     setTitle(title);
     setIsModalOpen(true);
-    id && setFilePath(allArticle[id]);
+    title && setFilePath(`${MDPath}${basePath}${title}.md`);
     console.log("🚀 ~ file: index.tsx:13 ~ articleItemClick ~ item:", item);
 
   }

@@ -171,7 +171,7 @@ module.exports = {
       config: config.template,
       inject: true, // 自动注入静态资源
     }),
-    new CleanWebpackPlugin(),
+    !isDev && new CleanWebpackPlugin(),
   ],
   devServer: {
     port: '3000', //默认是8080
