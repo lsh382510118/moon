@@ -44,12 +44,12 @@ server {
 #### 字体类型&字体颜色
 | **Before** | **After** |
 | --- | --- |
-| ![image.png](https://cdn.nlark.com/yuque/0/2023/png/991609/1700444960006-08f955c2-f742-4ee4-99fd-c57bd6eae1ce.png#averageHue=%23fbf8f7&clientId=u8d834c57-c4bb-4&from=paste&height=444&id=u8c0fe81b&originHeight=888&originWidth=1259&originalType=binary&ratio=2&rotation=0&showTitle=false&size=269936&status=done&style=none&taskId=u0eac850f-1625-4bfc-a36f-4f722cd37e6&title=&width=629.5) | ![image.png](https://cdn.nlark.com/yuque/0/2023/png/991609/1700444811465-82563183-fa5d-4c71-8966-5dea9a33fc72.png#averageHue=%23cd8e7d&clientId=u8d834c57-c4bb-4&from=paste&height=397&id=u8d0f4296&originHeight=793&originWidth=1311&originalType=binary&ratio=2&rotation=0&showTitle=false&size=244408&status=done&style=none&taskId=u7c170156-da33-46b9-94dd-839ef6179aa&title=&width=655.5) |
+| ![image.png](http://s4lrouxtt.hn-bkt.clouddn.com/moon/article/nginx-update-font-01.jpg) | ![image.png](http://s4lrouxtt.hn-bkt.clouddn.com/moon/article/nginx-update-font-02.jpg) |
 
 #### 字体引入
 | **Before** | **After** |
 | --- | --- |
-| ![image.png](https://cdn.nlark.com/yuque/0/2023/png/991609/1700445037603-a2e2f7f8-5562-4130-8794-b2ed81681bb8.png#averageHue=%23dbb887&clientId=u8d834c57-c4bb-4&from=paste&height=313&id=uba8db087&originHeight=625&originWidth=1073&originalType=binary&ratio=2&rotation=0&showTitle=false&size=188216&status=done&style=none&taskId=u8c81b590-d169-41a6-be69-c9dbd262e1d&title=&width=536.5) | ![image.png](https://cdn.nlark.com/yuque/0/2023/png/991609/1700445050114-e64add2e-bfd3-4d4c-8808-abf8addcc361.png#averageHue=%23c4927d&clientId=u8d834c57-c4bb-4&from=paste&height=324&id=u28b1fe8f&originHeight=648&originWidth=971&originalType=binary&ratio=2&rotation=0&showTitle=false&size=165751&status=done&style=none&taskId=uaf6137a3-060d-4240-8ef0-05f94477d46&title=&width=485.5) |
+| ![image.png](http://s4lrouxtt.hn-bkt.clouddn.com/moon/article/nginx-update-font-03.jpg) | ![image.png](http://s4lrouxtt.hn-bkt.clouddn.com/moon/article/nginx-update-font-04.jpg) |
 
 
 
