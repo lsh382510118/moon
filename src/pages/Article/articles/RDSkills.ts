@@ -1,5 +1,4 @@
-import {path} from '@/constants/index';
-const htmlBasePath = `${path}mds/`;
+const htmlBasePath = `mds/`;
 export const skillsArticles = {
   "001001": `${htmlBasePath}通过nginx 修改源webpage的样式.md`,
   "001002": `${htmlBasePath}前端请求大比拼：Fetch、Axios、Ajax、XHR.md`,
