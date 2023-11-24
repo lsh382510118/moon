@@ -71,7 +71,16 @@ module.exports = {
         use: [
           // 'style-loader', 
           isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader', {
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                auto: true,
+                localIdentName: '[local]___[hash:base64:5]',
+              },
+            },
+          },
+          {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
@@ -89,7 +98,15 @@ module.exports = {
                 ]
               }
             }
-          }, 'less-loader'
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              },
+            },
+          }
         ],
         exclude: /node_modules/
       },
