@@ -9,6 +9,7 @@ import {
 import '@/assets/styles/index.less';
 
 import Layout from '@/pages/Layout'
+import { baseRouter } from './constants';
 
 const Home = lazy(() => import('@/pages/Home'));
 const Article = lazy(() => import('@/pages/Article'));
@@ -33,7 +34,7 @@ const App = () => {
 
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename={baseRouter}>
     <Layout>
       <App />
     </Layout>
