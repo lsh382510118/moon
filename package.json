@@ -69,7 +69,6 @@
     "@babel/runtime-corejs3": "^7.16.5",
     "antd": "^5.11.2",
     "babel-polyfill": "^6.26.0",
-    "echarts": "^5.4.3",
     "echarts-for-react": "^3.0.2",
     "macaca-datahub": "3.6.3",
     "qiankun": "^2.10.16",
