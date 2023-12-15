@@ -16,6 +16,7 @@ const Article = lazy(() => import('@/pages/Article'));
 const Html = lazy(() => import('@/pages/Html'));
 const Javascript = lazy(() => import('@/pages/Javascript'));
 const Plugin = lazy(() => import('@/pages/Plugin'));
+const Information = lazy(() => import('@/pages/Information'));
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/html" element={<Html />} />
         <Route path="/javascript" element={<Javascript />} />
         <Route path="/plugin" element={<Plugin />} />
+        <Route path="/information" element={<Information />} />
       </Routes >
     </Suspense >
   );
